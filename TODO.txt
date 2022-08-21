@@ -1,0 +1,6 @@
+move suggestions to a overlay/popup like normal (create a second html-doc inside the normal one)
+add tag-colors (like on other sites)
+option: abc (alphabetical) / 123 (ranked)
+option: complete (ab -> abx) / match (ab -> abx, xab) / lose-match (ab -> abx, xab, axb)
+option: auto-prefix (remove prefix from list; add to search bar)
+option: limit (how many matches are shown)
