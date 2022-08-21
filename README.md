@@ -16,3 +16,5 @@ zip (Chrome, Edge, ?):
 5. Activate Developer Mode (top-right corner (Chrome, ?) / sidebar (left) (Edge, ?))
 6. Click "Load unpacked"
 7. Navigate to the unziped folder; select it
+
+the raw folder (and the zip) both contain the source code if you wnat to take a look at it.
