@@ -1,0 +1,6 @@
+fix: strong on wrong chr for match & loose_match
+
+option: auto-prefix (remove prefix from list; add to search bar)
+
+expand: mark animated thumbmails
+expand: resize imgs
