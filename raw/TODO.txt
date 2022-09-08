@@ -1,4 +1,0 @@
-option: abc (alphabetical) / 123 (ranked)
-option: complete (ab -> abx) / match (ab -> abx, xab) / lose-match (ab -> abx, xab, axb)
-option: auto-prefix (remove prefix from list; add to search bar)
-option: limit (how many matches are shown)
