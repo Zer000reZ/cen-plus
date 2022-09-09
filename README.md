@@ -17,4 +17,4 @@ zip (Chrome, Edge, Opera, ?):
 6. Click "Load unpacked"
 7. Navigate to the unziped folder; select it
 
-the raw folder (and the zip) both contain the source code if you wnat to take a look at it.
+The raw folder (and the zip) both contain the source code if you want to take a look at it.
