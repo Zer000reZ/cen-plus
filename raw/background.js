@@ -48,7 +48,7 @@ function searchPlus(){
                     b = document.createElement("DIV");
                     var col = ["_censoring", "censored_", "censor_request", "artist", "artist_request", "character", "character_request", "series", "series_request", "editor", "caption"];
                     for (var item of col){
-                        if(arr[i].includes(item)){
+                        if(arr[index].includes(item)){
                             b.className = item;
                         }
                     }
