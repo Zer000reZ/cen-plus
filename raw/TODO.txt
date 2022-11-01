@@ -1,9 +1,8 @@
 priority:
     high:
-        option: auto-prefix (remove prefix from list; add to search bar) html attr data-trueTagValue
-    medium:
         extra: resize imgs
         git: make better readme
+    medium:
         lite version only load tags with more than fixed x posts
         favorite tags (on top if match = ignore abc/123) (option: show onfocus)
     low:

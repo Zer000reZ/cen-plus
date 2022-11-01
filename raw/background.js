@@ -19,7 +19,7 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 
 // https://www.w3schools.com/howto/howto_js_autocomplete.asp modified
 function searchPlus(){
-    function autocomplete (inp, arr, filter, amount) {
+    function autocomplete (inp, arr, filter, no_prefix, amount) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/
         var currentFocus;
@@ -46,10 +46,16 @@ function searchPlus(){
             var found = 0;
             var index = 0;
             while(found < amount && index < arr.length){
-                match = findMatch(arr[index], val, filter)
+                var hay = arr[index]
+                var prefix = ["artist", "character", "series", "editor"];
+                for (var item of prefix){
+                    hay = hay.replace(item+":", "");
+                }
+                match = findMatch(hay, val, filter)
                 if(match.length){
                     b = document.createElement("DIV");
-                    var col = ["_censoring", "censored_", "censor_request", "artist", "artist_request", "character", "character_request", "series", "series_request", "editor", "caption"];
+                    var col = ["_censoring", "censored_", "censor_request", "artist", "artist_request", "character", 
+                        "character_request", "series", "series_request", "editor", "caption"];
                     for (var item of col){
                         if(arr[index].includes(item)){
                             b.className = item;
@@ -184,10 +190,11 @@ function searchPlus(){
     wrap.appendChild(inp);
 
     chrome.storage.local.get({
-        Tags  : null, 
-        filter: "match",
-        amount: 30
+        Tags     : null, 
+        filter   : "match",
+        no_prefix: true,
+        amount   : 30
     }, function(items) {
-        autocomplete(document.getElementById(searchbar), items.Tags, items.filter, items.amount)
+        autocomplete(document.getElementById(searchbar), items.Tags, items.filter, items.no_prefix, items.amount)
     });
 }
