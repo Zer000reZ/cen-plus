@@ -1,6 +1,5 @@
 priority:
     high:
-        git: make better readme
     medium:
         load all tags; make it srollable; update readme
         lite version only load tags with more than fixed x posts
