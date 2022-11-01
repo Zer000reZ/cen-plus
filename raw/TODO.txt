@@ -1,14 +1,12 @@
-fix: strong on wrong chr for match & loose_match
-fix: - blocks recomendations
-fix: long tags -> only show first 20 char
-
-option: auto-prefix (remove prefix from list; add to search bar) html attr data-trueTagValue
-favorite tags (on top if match = ignore abc/123) (option: show onfocus)
-tag count in dropdown
-add tags seen on the side to 123 & abc
-lite version only load tags with more than fixed x posts
-
-expand: mark animated thumbmails
-expand: resize imgs
-
-git: make better readme
+priority:
+    high:
+        option: auto-prefix (remove prefix from list; add to search bar) html attr data-trueTagValue
+    medium:
+        extra: resize imgs
+        git: make better readme
+        lite version only load tags with more than fixed x posts
+        favorite tags (on top if match = ignore abc/123) (option: show onfocus)
+    low:
+        extra: mark animated thumbmails
+        tag count in dropdown
+        add tags seen on the side to 123 & abc

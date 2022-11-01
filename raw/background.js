@@ -26,16 +26,19 @@ function searchPlus(){
         /*execute a function when someone writes in the text field:*/
         inp.addEventListener("input", function(e) {
             var a, b, i;
-            var val = this.value.split(" ");
-            val = val[val.length -1];
+            var val = this.value.split(" ").pop();
             var base_val = this.value.substr(0, this.value.length - val.length)
+            if(val[0] == "-"){
+                base_val += "-";
+                val = val.substr(1);
+            }
             /*close any already open lists of autocompleted values*/
             closeAllLists();
             if (!val) { return false;}
             currentFocus = -1;
             /*create a DIV element that will contain the items (values):*/
             a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("id", this.id + "-autocomplete-list");
             a.setAttribute("class", "autocomplete-items");
             /*append the DIV element as a child of the autocomplete container:*/
             this.parentNode.appendChild(a);
@@ -62,7 +65,9 @@ function searchPlus(){
                         }
                         strong = !strong;
                     }
+                    b.innerHTML += "<input type='hidden' value='" + arr[index] + "'>";
                     b.addEventListener("click", function(e) {
+                        console.log(this.getElementsByTagName("input"))
                         /*insert the value for the autocomplete text field:*/
                         inp.value = base_val + this.getElementsByTagName("input")[0].value;
                         /*close the list of autocompleted values*/
@@ -76,7 +81,7 @@ function searchPlus(){
         });
         /*execute a function presses a key on the keyboard:*/
         inp.addEventListener("keydown", function(e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
+            var x = document.getElementById(this.id + "-autocomplete-list");
             if (x) x = x.getElementsByTagName("div");
             switch(e.keyCode){
                 case 40://arrow DOWN key
@@ -120,15 +125,15 @@ function searchPlus(){
                     var j = 0;
                     for(var i of needle){
                         result.push("");
-                        while(hay[j].toLowerCase() != i.toLowerCase()){
+                        while(j < hay.length && hay[j].toLowerCase() != i.toLowerCase()){
                             result[result.length-1] += hay[j]
                             j++
-                            if(j >= hay.length){
-                                return [];
-                            }
                         }
                         result.push(i);
+                        j++
+                        if(j >= hay.length){return [];}
                     }
+                    result.push(hay.substr(j));
                     return result;
             }
             return [];
