@@ -55,9 +55,11 @@ function searchPlus(){
                     var strong = false;
                     b.innerHTML = "";
                     for(i of match){
-                        if(strong){b.innerHTML += "<strong>"}
-                        b.innerHTML += i
-                        if(strong){b.innerHTML += "</strong>"}
+                        if(strong){
+                            b.innerHTML += "<strong>"+i+"</strong>";
+                        }else{
+                            b.innerHTML += i;
+                        }
                         strong = !strong;
                     }
                     b.addEventListener("click", function(e) {
