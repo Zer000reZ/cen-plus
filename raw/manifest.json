@@ -2,7 +2,7 @@
   "name": "cen-plus",
   "action": {},
   "manifest_version": 3,
-  "version": "0.2",
+  "version": "0.3",
   "description": "adds missing features to censoredbooru",
   "options_page": "options.html",
   "permissions": [
