@@ -1,5 +1,5 @@
 <a name="readme-top"></a>
-The raw folder (and the zip) contain the code. Feel free to look at and modify it.
+The raw folder (and the zip) contain the source code. Feel free to look at and modify it.
 
 <!-- TABLE OF CONTENTS -->
 <ol>
