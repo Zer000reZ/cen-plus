@@ -5,17 +5,46 @@ chrome.runtime.onInstalled.addListener(async () => {
     });
 });
 
+
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete' && (
         tab.url.includes("https://censored.booru.org/index.php?page=post") || 
         tab.url == "https://censored.booru.org/index.php"
     )) {
+        if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=list")){
+            chrome.scripting.executeScript({
+                target: { tabId: tabId },
+                function: ListPage
+            });
+        }
+        if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=view")){
+            chrome.scripting.executeScript({
+                target: { tabId: tabId },
+                function: ViewPage
+            });
+        }
         chrome.scripting.executeScript({
             target: { tabId: tabId },
             function: searchPlus
         });
     }
 })
+
+function ListPage(){
+    //mark animated
+}
+
+function ViewPage(){
+    //resize image
+    chrome.storage.local.get({
+        resize : true
+    }, function(items) {
+        if(items.resize){
+            var img = document.getElementsByTagName("img")[0]
+            img.classList.add("cen-plus-resize")
+        }
+    });
+}
 
 // https://www.w3schools.com/howto/howto_js_autocomplete.asp modified
 function searchPlus(){
@@ -47,9 +76,11 @@ function searchPlus(){
             var index = 0;
             while(found < amount && index < arr.length){
                 var hay = arr[index]
-                var prefix = ["artist", "character", "series", "editor"];
-                for (var item of prefix){
-                    hay = hay.replace(item+":", "");
+                if(no_prefix){
+                    var prefix = ["artist", "character", "series", "editor"];
+                    for (var item of prefix){
+                        hay = hay.replace(item+":", "");
+                    }
                 }
                 match = findMatch(hay, val, filter)
                 if(match.length){
