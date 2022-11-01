@@ -5,7 +5,7 @@ function save_options() {
   var no_prefix = document.getElementById('no_prefix').checked;
   var amount    = document.getElementById('amount').value;
   var resize    = document.getElementById('resize').checked;
-  var animated    = document.getElementById('animated').checked;
+  var animated  = document.getElementById('animated').checked;
   chrome.storage.local.set({
     sorting  : sorting,
     filter   : filter,

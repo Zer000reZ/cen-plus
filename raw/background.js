@@ -77,9 +77,9 @@ function searchPlus(){
             while(found < amount && index < arr.length){
                 var hay = arr[index]
                 if(no_prefix){
-                    var prefix = ["artist", "character", "series", "editor"];
+                    var prefix = ["artist:", "character:", "series:", "editor:"];
                     for (var item of prefix){
-                        hay = hay.replace(item+":", "");
+                        hay = hay.replace(item, "");
                     }
                 }
                 match = findMatch(hay, val, filter)
