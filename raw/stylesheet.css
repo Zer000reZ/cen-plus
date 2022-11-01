@@ -50,10 +50,16 @@
 	padding: 0 0.5em;
 }
 
+.autocomplete-items > div {
+	max-width: 20em;
+    overflow: hidden;
+}
+
 .autocomplete-items div:hover {
 	background-color: #e0e0e0;
-  }
-  .autocomplete-active {
+}
+
+.autocomplete-active {
 	background-color: DodgerBlue !important;
 	color: #ffffff;
-  }
+}

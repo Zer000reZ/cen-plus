@@ -19,104 +19,130 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 
 // https://www.w3schools.com/howto/howto_js_autocomplete.asp modified
 function searchPlus(){
-    function autocomplete (inp, arr, filter, amount) {
+    function autocomplete (inp, arr, filter, no_prefix, amount) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/
         var currentFocus;
         /*execute a function when someone writes in the text field:*/
         inp.addEventListener("input", function(e) {
             var a, b, i;
-            var val = this.value.split(" ");
-            val = val[val.length -1];
+            var val = this.value.split(" ").pop();
             var base_val = this.value.substr(0, this.value.length - val.length)
+            if(val[0] == "-"){
+                base_val += "-";
+                val = val.substr(1);
+            }
             /*close any already open lists of autocompleted values*/
             closeAllLists();
             if (!val) { return false;}
             currentFocus = -1;
             /*create a DIV element that will contain the items (values):*/
             a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("id", this.id + "-autocomplete-list");
             a.setAttribute("class", "autocomplete-items");
             /*append the DIV element as a child of the autocomplete container:*/
             this.parentNode.appendChild(a);
             /*for each item in the array...*/
             var found = 0;
-            for (i = 0; i < arr.length; i++) {
-                /*check if the item starts with the same letters as the text field value:*/
-                if ((filter == "from_start"  && arr[i].toUpperCase().substr(0, val.length) == val.toUpperCase()) ||
-                    (filter == "match"       && arr[i].toUpperCase().includes(val.toUpperCase())               ) ||
-                    (filter == "loose_match" && looseMatch(arr[i].toUpperCase(), val.toUpperCase())            )) {
-                /*create a DIV element for each matching element:*/
-                b = document.createElement("DIV");
-
-                var col = ["_censoring", "censored_", "censor_request", "artist", "artist_request", "character", "character_request", "series", "series_request", "editor", "caption"];
-                for (var item of col){
-                    if(arr[i].includes(item)){
-                        b.className = item;
+            var index = 0;
+            while(found < amount && index < arr.length){
+                var hay = arr[index]
+                var prefix = ["artist", "character", "series", "editor"];
+                for (var item of prefix){
+                    hay = hay.replace(item+":", "");
+                }
+                match = findMatch(hay, val, filter)
+                if(match.length){
+                    b = document.createElement("DIV");
+                    var col = ["_censoring", "censored_", "censor_request", "artist", "artist_request", "character", 
+                        "character_request", "series", "series_request", "editor", "caption"];
+                    for (var item of col){
+                        if(arr[index].includes(item)){
+                            b.className = item;
+                        }
                     }
-                }
-                
-                /*make the matching letters bold:*/
-                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                b.innerHTML += arr[i].substr(val.length);
-                /*insert a input field that will hold the current array item's value:*/
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                /*execute a function when someone clicks on the item value (DIV element):*/
+                    var strong = false;
+                    b.innerHTML = "";
+                    for(i of match){
+                        if(strong){
+                            b.innerHTML += "<strong>"+i+"</strong>";
+                        }else{
+                            b.innerHTML += i;
+                        }
+                        strong = !strong;
+                    }
+                    b.innerHTML += "<input type='hidden' value='" + arr[index] + "'>";
                     b.addEventListener("click", function(e) {
-                    /*insert the value for the autocomplete text field:*/
-                    inp.value = base_val + this.getElementsByTagName("input")[0].value;
-                    /*close the list of autocompleted values,
-                    (or any other open lists of autocompleted values:*/
-                    closeAllLists();
-                });
-                a.appendChild(b);
-                found++;
-                if(found == amount){
-                    break;
+                        console.log(this.getElementsByTagName("input"))
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = base_val + this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                    found++;
                 }
-                }
+                index++;
             }
         });
         /*execute a function presses a key on the keyboard:*/
         inp.addEventListener("keydown", function(e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
+            var x = document.getElementById(this.id + "-autocomplete-list");
             if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-                /*If the arrow DOWN key is pressed,
-                increase the currentFocus variable:*/
-                currentFocus++;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 38) { //up
-                /*If the arrow UP key is pressed,
-                decrease the currentFocus variable:*/
-                currentFocus--;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 13) {
-                /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                if (currentFocus > -1) {
-                e.preventDefault();
-                /*and simulate a click on the "active" item:*/
-                if (x) x[currentFocus].click();
-                currentFocus = -1;
-                }
+            switch(e.keyCode){
+                case 40://arrow DOWN key
+                    currentFocus++;
+                    addActive(x);
+                    break;
+                case 38://arrow UP key
+                    currentFocus--;
+                    addActive(x);
+                    break;
+                case 13://ENTER key
+                    if (currentFocus > -1) {
+                        e.preventDefault();
+                        /*and simulate a click on the "active" item:*/
+                        if (x) x[currentFocus].click();
+                        currentFocus = -1;
+                    }
+                    break;
             }
         });
-        function looseMatch(b, a){
-            if(a.length > b.length){
-                return false;
+        function findMatch(hay, needle, filter){
+            /*return list of string switching between matched and unmatch parts
+            when there is no match return empty list*/
+            if(hay.length < needle.length){
+                return [];
             }
-            var j = 0;
-            for(var i of a){
-                while(b[j] != i){
-                    j++
-                    if(j >= b.length){
-                        return false;
+            switch(filter){
+                case "from_start":
+                    if(hay.toLowerCase().substr(0, needle.length) == needle.toLowerCase()){
+                        return ["", hay.substr(0,needle.length), hay.substr(needle.length)]
                     }
-                }
+                    break;
+                case "match":
+                    var i = hay.toLowerCase().indexOf(needle.toLowerCase());
+                    if(i != -1){
+                        return [hay.substr(0,i), hay.substr(i,needle.length), hay.substr(i+needle.length)]
+                    }
+                    break;
+                case "loose_match":
+                    var result = [];
+                    var j = 0;
+                    for(var i of needle){
+                        result.push("");
+                        while(j < hay.length && hay[j].toLowerCase() != i.toLowerCase()){
+                            result[result.length-1] += hay[j]
+                            j++
+                        }
+                        result.push(i);
+                        j++
+                        if(j >= hay.length){return [];}
+                    }
+                    result.push(hay.substr(j));
+                    return result;
             }
-            return true;
+            return [];
         }
         function addActive(x) {
             /*a function to classify an item as "active":*/
@@ -164,10 +190,11 @@ function searchPlus(){
     wrap.appendChild(inp);
 
     chrome.storage.local.get({
-        Tags  : null, 
-        filter: "match",
-        amount: 30
+        Tags     : null, 
+        filter   : "match",
+        no_prefix: true,
+        amount   : 30
     }, function(items) {
-        autocomplete(document.getElementById(searchbar), items.Tags, items.filter, items.amount)
+        autocomplete(document.getElementById(searchbar), items.Tags, items.filter, items.no_prefix, items.amount)
     });
 }

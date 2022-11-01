@@ -1,10 +1,11 @@
-fix: strong on wrong chr for match & loose_match
-fix: - blocks recomendations
-
-option: auto-prefix (remove prefix from list; add to search bar) html attr data-trueTagValue
-favorite tags (on top if match = ignore abc/123) (option: show onfocus)
-tag count in dropdown
-add tags seen on the side to 123 & abc
-
-expand: mark animated thumbmails
-expand: resize imgs
+priority:
+    high:
+        extra: resize imgs
+        git: make better readme
+    medium:
+        lite version only load tags with more than fixed x posts
+        favorite tags (on top if match = ignore abc/123) (option: show onfocus)
+    low:
+        extra: mark animated thumbmails
+        tag count in dropdown
+        add tags seen on the side to 123 & abc

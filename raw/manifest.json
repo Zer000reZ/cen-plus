@@ -1,9 +1,9 @@
 {
-  "name": "censoredbooru autocomplete",
+  "name": "cen-plus",
   "action": {},
   "manifest_version": 3,
-  "version": "0.1",
-  "description": "adds autocomplete to the seachbar",
+  "version": "0.2",
+  "description": "adds missing features to censoredbooru",
   "options_page": "options.html",
   "permissions": [
     "activeTab",
