@@ -39,11 +39,11 @@ works for height, width, downsizing and upsizing
 <!-- Installation -->
 ## Installation
 Which instalation works for your Browser:
-Chrome: <li><a href="#zip">zip</a></li>
-Edge: <li><a href="#zip">zip</a></li>
-Opera: <li><a href="#zip">zip</a></li> and <li><a href="#crx">crx</a></li>
+Chrome: <a href="#zip">zip</a>
+Edge: <a href="#zip">zip</a>
+Opera: <a href="#zip">zip</a> and<a href="#crx">crx</a>
 Firefox: None, this is a Chromium extension
-Others: No idea; <li><a href="#crx">crx</a></li> is easier but probablly won't work, <li><a href="#zip">zip</a></li> has a better chance of working
+Others: No idea; <a href="#crx">crx</a> is easier but probablly won't work, <a href="#zip">zip</a> has a better chance of working
 
 ### From crx
 
