@@ -7,8 +7,8 @@ The raw folder (and the zip) contain the code. Feel free to look at and modify i
    <li>
    <a href="#installation">Installation</a>
    <ul>
-      <li><a href="#from crx">From crx</a></li>
-      <li><a href="#from zip">From zip</a></li>
+      <li><a href="#from-crx">From crx</a></li>
+      <li><a href="#from-zip">From zip</a></li>
    </ul>
    </li>
 </ol>
@@ -38,11 +38,11 @@ Images get resized to fit your screen. works for height, width, downsizing and u
 <!-- Installation -->
 ## Installation
 Which instalation works for your Browser:
-* Chrome: <a href="#from zip">zip</a>
-* Edge: <a href="#from zip">zip</a>
-* Opera: <a href="#from zip">zip</a> and<a href="#from crx">crx</a>
+* Chrome: <a href="#from-zip">zip</a>
+* Edge: <a href="#from-zip">zip</a>
+* Opera: <a href="#from-zip">zip</a> and<a href="#from-crx">crx</a>
 * Firefox: None, this is a Chromium extension
-* Others: No idea; <a href="#from crx">crx</a> is easier but probablly won't work, <a href="#from zip">zip</a> has a better chance of working
+* Others: No idea; <a href="#from-crx">crx</a> is easier but probablly won't work, <a href="#from-zip">zip</a> has a better chance of working
 
 ### From crx
 
