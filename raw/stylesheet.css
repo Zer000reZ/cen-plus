@@ -63,3 +63,10 @@
 	background-color: DodgerBlue !important;
 	color: #ffffff;
 }
+
+.cen-plus-resize{
+	max-height: calc(100vh - 130px);
+    max-width: calc(80vw - 50px);
+    width: auto;
+    height: auto;
+}
