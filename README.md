@@ -17,6 +17,12 @@ The raw folder (and the zip) contain the source code. Feel free to look at and m
 ## Features
 Future plans can be seen in /raw/TODO.txt
 
+these option can be found by:
+* going to "chrome://extensions"
+* clicking on options under cen-plus
+OR
+* 
+
 ### Searchbar
 #### Sorting
 * 123: By the amunt of Posts
@@ -40,7 +46,7 @@ Images get resized to fit your screen. works for height, width, downsizing and u
 Which instalation works for your Browser:
 * Chrome: <a href="#from-zip">zip</a>
 * Edge: <a href="#from-zip">zip</a>
-* Opera: <a href="#from-zip">zip</a> and<a href="#from-crx">crx</a>
+* Opera: <a href="#from-zip">zip</a> and <a href="#from-crx">crx</a>
 * Firefox: None, this is a Chromium extension
 * Others: No idea; <a href="#from-crx">crx</a> is easier but probablly won't work, <a href="#from-zip">zip</a> has a better chance of working
 
@@ -63,7 +69,7 @@ Open Tabs need to be refreshed for the extension to work
 4. go to "chrome://extensions" in your webbroser
 5. Activate Developer Mode 
 * Chrome: top-right corner
-* Edge: sidebar (left)
+* Edge: sidebar left-bottom (3-lines upper-left corner)
 6. Click "Load unpacked"
 7. Navigate to the unziped folder; select it
 Open Tabs need to be refreshed for the extension to work
