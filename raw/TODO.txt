@@ -1,5 +1,8 @@
 priority:
     high:
+        add img resize toggle on page (above)
+          adjust for add (settings option)
+          user input size insted of toggle
         mark animated thumbmails
         only one taglist (123) sort for abc
     medium:
