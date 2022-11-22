@@ -1,10 +1,11 @@
 priority:
     high:
+        mark animated thumbmails
+        only one taglist (123) sort for abc
     medium:
-        load all tags; make it srollable; update readme
+        load all tags; make it scrollable; update readme
         lite version only load tags with more than fixed x posts
         favorite tags (on top if match = ignore abc/123) (option: show onfocus)
     low:
-        extra: mark animated thumbmails
         tag count in dropdown
         add tags seen on the side to 123 & abc
