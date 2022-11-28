@@ -14,8 +14,11 @@ function save_options() {
     resize   : resize,
     animated : animated
   });
-  fetch(sorting+".txt").then(response => response.text()).then(data => {
+  fetch("tags.txt").then(response => response.text()).then(data => {
     var Tags = data.split('\n');
+    if(sorting == "abc"){
+      Tags.sort();
+    }
     chrome.storage.local.set({ Tags });
 });
 }
