@@ -20,8 +20,6 @@ Future plans can be seen in /raw/TODO.txt
 these option can be found by:
 * going to "chrome://extensions"
 * clicking on options under cen-plus
-OR
-* 
 
 ### Searchbar
 #### Sorting
@@ -35,7 +33,6 @@ OR
 Tags in the autocomplete section have their prefix removed (artist:, character:, series:, editor:)
 #### Amount of Tags
 How many Tags should be shown;
-Scrolling does't show more (yet)
 
 ### Others
 #### resize images
@@ -43,6 +40,8 @@ Images get resized to fit your screen. works for height, width, downsizing and u
 
 <!-- Installation -->
 ## Installation
+The lite-version excludes all tags with less than 10 images resulting in a much smaller file-/foldersize
+
 Which instalation works for your Browser:
 * Chrome: <a href="#from-zip">zip</a>
 * Edge: <a href="#from-zip">zip</a>
@@ -52,7 +51,7 @@ Which instalation works for your Browser:
 
 ### From crx
 
-1. Click on "cen_tag_autocomplete.crx"
+1. Click on "cen_plus.crx" / "cen_plus-lite.crx"
 2. Click on download
 3. Your browser should show a promt along the lines of 
    "The extension was disabled because it is from an unknown source"
@@ -63,7 +62,7 @@ Open Tabs need to be refreshed for the extension to work
 
 ### From zip
 
-1. Click on "cen_tag_autocomplete.zip"
+1. Click on "cen_plus.zip" / "cen_plus-lite.zip"
 2. Click on download
 3. (move it,) unzip it
 4. go to "chrome://extensions" in your webbroser
