@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(async () => {
-    fetch("123.txt").then(response => response.text()).then(data => {
+    fetch("tags.txt").then(response => response.text()).then(data => {
         var Tags = data.split('\n');
         chrome.storage.local.set({ Tags });
     });
@@ -31,7 +31,18 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 })
 
 function ListPage(){
-    //mark animated
+    chrome.storage.local.get({
+        animated : true
+    }, function(items) {
+        if(items.animated){
+            var imgs = document.getElementsByTagName("img")
+            for(var img of imgs){
+                if(img.title.includes("animated")){
+                    img.classList.add("cen-plus-animated")
+                }
+            }
+        }
+    });
 }
 
 function ViewPage(){
