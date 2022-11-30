@@ -14,13 +14,13 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
         if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=list")){
             chrome.scripting.executeScript({
                 target: { tabId: tabId },
-                function: ListPage
+                function: Mark_Animated
             });
         }
         if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=view")){
             chrome.scripting.executeScript({
                 target: { tabId: tabId },
-                function: ViewPage
+                function: Resize_Img
             });
         }
         chrome.scripting.executeScript({
@@ -30,29 +30,48 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
     }
 })
 
-function ListPage(){
+function Mark_Animated(){
     chrome.storage.local.get({
         animated : true
     }, function(items) {
         if(items.animated){
-            var imgs = document.getElementsByTagName("img")
+            var imgs = document.getElementsByTagName("img");
             for(var img of imgs){
                 if(img.title.includes("animated")){
-                    img.classList.add("cen-plus-animated")
+                    img.classList.add("cen-plus-animated");
                 }
             }
         }
     });
 }
 
-function ViewPage(){
+function Resize_Img(){
     //resize image
     chrome.storage.local.get({
         resize : true
     }, function(items) {
         if(items.resize){
-            var img = document.getElementsByTagName("img")[0]
-            img.classList.add("cen-plus-resize")
+            var img = document.getElementsByTagName("img")[0];
+            if(img.classList.contains("cen-plus-resize")){
+                return;
+            }
+            var resize_info = document.createElement("a");
+            resize_info.setAttribute("href", "#");
+            function undo_resize(){
+                img.classList.remove("css-resize");
+                resize_info.innerHTML = "This image is full-sized. Resize to fit screen?"
+                resize_info.onclick = do_resize;
+            }
+            function do_resize(){
+                img.classList.add("css-resize");
+                resize_info.innerHTML = "This image is resized. Reset to 100% ?"
+                resize_info.onclick = undo_resize;
+            }
+            do_resize();
+                            
+            img.parentNode.parentNode.insertBefore(resize_info, img.parentNode);
+            img.classList.add("cen-plus-resize");
+            img.classList.add("css-resize");
         }
     });
 }

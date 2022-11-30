@@ -64,8 +64,8 @@
 	color: #ffffff;
 }
 
-.cen-plus-resize{
-	max-height: calc(100vh - 130px);
+.css-resize{
+	max-height: calc(100vh - 145px);/*-245px for ads*/
     max-width: calc(80vw - 50px);
     width: auto;
     height: auto;
