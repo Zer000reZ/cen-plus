@@ -7,26 +7,37 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
-    if (changeInfo.status == 'complete' && (
-        tab.url.includes("https://censored.booru.org/index.php?page=post") || 
-        tab.url == "https://censored.booru.org/index.php"
-    )) {
-        if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=list")){
+    if (changeInfo.status == 'complete'){
+        if (
+            tab.url.includes("https://censored.booru.org/index.php?page=post") || 
+            tab.url == "https://censored.booru.org/index.php" ||
+            tab.url == "https://censored.booru.org"
+        ) {
+            if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=list")){
+                chrome.scripting.executeScript({
+                    target: { tabId: tabId },
+                    function: Mark_Animated
+                });
+            }
+            if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=view")){
+                chrome.scripting.executeScript({
+                    target: { tabId: tabId },
+                    function: Resize_Img
+                });
+            }
+            chrome.scripting.executeScript({
+                target: { tabId: tabId },
+                function: searchPlus
+            });
+        }else if(
+            tab.url.includes("https://censored.booru.org/index.php?page=favorites&s=view") ||
+            tab.url.includes("https://censored.booru.org/index.php?page=account_profile")
+        ){
             chrome.scripting.executeScript({
                 target: { tabId: tabId },
                 function: Mark_Animated
             });
         }
-        if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=view")){
-            chrome.scripting.executeScript({
-                target: { tabId: tabId },
-                function: Resize_Img
-            });
-        }
-        chrome.scripting.executeScript({
-            target: { tabId: tabId },
-            function: searchPlus
-        });
     }
 })
 

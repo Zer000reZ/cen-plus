@@ -1,9 +1,8 @@
 priority:
     high:
         add img resize toggle on page (above)
-          adjust for add (settings option)
+          adjust for ads (settings option)
           user input size insted of toggle
-        mark animated thumbmails
     medium:
         ?more tags on scroll
         load all tags; make it scrollable; update readme
