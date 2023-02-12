@@ -50,12 +50,12 @@
 	padding: 0 0.5em;
 }
 
-.autocomplete-items > div {
+.autocomplete-items > a {
 	max-width: 20em;
     overflow: hidden;
 }
 
-.autocomplete-items div:hover {
+.autocomplete-items a:hover {
 	background-color: #e0e0e0;
 }
 
