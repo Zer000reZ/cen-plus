@@ -143,7 +143,8 @@ function searchPlus(){
                         }
                         strong = !strong;
                     }
-                    b.innerHTML += "<input type='hidden' value='" + arr[index] + "'>";
+                    b.innerHTML += "<input type='hidden' value='" + arr[index] + 
+                        "' href='https://censored.booru.org/index.php?page=post&s=list&tags=" + arr[index] + "'>";
                     b.addEventListener("click", function(e) {
                         console.log(this.getElementsByTagName("input"))
                         /*insert the value for the autocomplete text field:*/
