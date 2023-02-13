@@ -146,6 +146,7 @@ function searchPlus(){
                     b.innerHTML += "<input type='hidden' value='" + arr[index] + "'>";
                     b.setAttribute("href", "https://censored.booru.org/index.php?page=post&s=list&tags=" + arr[index]);
                     b.addEventListener("click", function(e) {
+                        e.preventDefault();
                         console.log(this.getElementsByTagName("input"))
                         /*insert the value for the autocomplete text field:*/
                         inp.value = base_val + this.getElementsByTagName("input")[0].value;
@@ -162,7 +163,7 @@ function searchPlus(){
         /*execute a function presses a key on the keyboard:*/
         inp.addEventListener("keydown", function(e) {
             var x = document.getElementById(this.id + "-autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
+            if (x) x = x.getElementsByTagName("a");
             switch(e.keyCode){
                 case 40://arrow DOWN key
                     currentFocus++;
