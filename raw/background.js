@@ -5,7 +5,6 @@ chrome.runtime.onInstalled.addListener(async () => {
     });
 });
 
-
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
     if (changeInfo.status == 'complete'){
         if (
@@ -16,13 +15,17 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
             if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=list")){
                 chrome.scripting.executeScript({
                     target: { tabId: tabId },
-                    function: Mark_Animated
+                    function: markAnimated
                 });
             }
             if(tab.url.includes("https://censored.booru.org/index.php?page=post&s=view")){
                 chrome.scripting.executeScript({
                     target: { tabId: tabId },
-                    function: Resize_Img
+                    function: resizeImg
+                });
+                chrome.scripting.executeScript({
+                    target: { tabId: tabId },
+                    function: saucenao
                 });
             }
             chrome.scripting.executeScript({
@@ -35,13 +38,13 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
         ){
             chrome.scripting.executeScript({
                 target: { tabId: tabId },
-                function: Mark_Animated
+                function: markAnimated
             });
         }
     }
 })
 
-function Mark_Animated(){
+function markAnimated(){
     chrome.storage.local.get({
         animated : true
     }, function(items) {
@@ -56,7 +59,7 @@ function Mark_Animated(){
     });
 }
 
-function Resize_Img(){
+function resizeImg(){
     //resize image
     chrome.storage.local.get({
         resize : true
@@ -85,6 +88,21 @@ function Resize_Img(){
             img.classList.add("css-resize");
         }
     });
+}
+
+function saucenao(){
+    var img = document.getElementsByTagName("img")[0];
+    if(img.classList.contains("saucenao")){
+        return;
+    }
+    img.classList.add("saucenao");
+    var saucenao_info = document.createElement("a");
+    saucenao_info.innerHTML = "Find Sauce";
+    saucenao_info.href = "https://saucenao.com/search.php?url="+encodeURIComponent(img.src);
+    img.parentNode.parentNode.insertBefore(saucenao_info, img.parentNode);
+    var sep = document.createElement("b");
+    sep.innerHTML = ' | ';
+    img.parentNode.parentNode.insertBefore(sep, img.parentNode);
 }
 
 // https://www.w3schools.com/howto/howto_js_autocomplete.asp modified
