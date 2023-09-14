@@ -1,5 +1,5 @@
 <a name="readme-top"></a>
-The raw folder (and the zip) contain the source code. Feel free to look at and modify it.
+The cen-plus folder (and the zip) contain the source code. Feel free to look at and modify it.
 
 <!-- TABLE OF CONTENTS -->
 <ol>
@@ -15,7 +15,7 @@ The raw folder (and the zip) contain the source code. Feel free to look at and m
 
 <!-- ABOUT THE PROJECT -->
 ## Features
-Future plans can be seen in /raw/TODO.txt
+<!--Future plans can be seen in /cen-plus/TODO.txt -->
 
 these option can be found by:
 * going to "chrome://extensions"
